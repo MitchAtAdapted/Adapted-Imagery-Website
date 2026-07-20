@@ -1,0 +1,621 @@
+/* ==========================================================================
+   1. CSS Variables (Custom Properties)
+   Define your colors, fonts, and spacing here. Changing a value here 
+   will update it everywhere in the design.
+   ========================================================================== */
+:root {
+    /* Colors */
+    --bg-color: #dee2e4;
+    --text-color: #333333;
+    --text-light: #666666;
+    --accent-color: #0056b3;
+    /* Used for links and hover states */
+    --border-color: #ffffff;
+
+    /* Typography */
+    --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    /* Spacing & Layout */
+    --max-width: 1200px;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+}
+
+/* ==========================================================================
+   2. Base Reset & Typography
+   Creates a consistent baseline across all web browsers.
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    /* Ensures padding doesn't add to width */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    /* Makes text look sharper */
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #003d82;
+    /* Darker shade on hover */
+}
+
+img,
+iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    /* Removes weird bottom spacing on images */
+}
+
+hr {
+    border: 0;
+    border-top: 5px solid var(--border-color);
+    margin: var(--spacing-sm) auto;
+    max-width: var(--max-width);
+}
+
+/* ==========================================================================
+   3. Header & Navigation
+   ========================================================================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    /* Pushes logo left, nav right */
+    align-items: center;
+    /* Vertically centers items */
+    padding: var(--spacing-md);
+    max-width: var(--max-width);
+    margin: 0 auto;
+    /* Centers the header container */
+}
+
+.logo-container img {
+    max-height: 100px;
+    /* Constrain logo height */
+    width: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-md);
+    /* Space between nav items */
+}
+
+nav a {
+    color: var(--text-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+nav a.active,
+nav a:hover {
+    color: var(--accent-color);
+}
+
+/* Dropdown Menu Logic */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--bg-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-sm) 0;
+    min-width: 200px;
+    z-index: 10;
+    flex-direction: column;
+    /* Stacks items vertically */
+    gap: 0;
+}
+
+.dropdown-menu li {
+    padding: 0.5rem var(--spacing-sm);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+    /* Show dropdown when parent is hovered */
+}
+
+/* ==========================================================================
+   4. Main Content Area
+   ========================================================================== */
+main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Hero / Welcome Section */
+.welcome-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Two equal columns */
+    gap: var(--spacing-lg);
+    align-items: center;
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.welcome-section .video-container {
+    grid-row: span 2;
+}
+
+.video-container iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    /* Maintains video proportions */
+    border-radius: 8px;
+    /* Optional: slight rounding for modern look */
+}
+
+.welcome-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.welcome-text p {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.1rem;
+}
+
+/* Overview / Section layout (split grid) */
+.overview-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    align-items: center;
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.overview-image img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.overview-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.overview-content p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Formula Section (Images on left, Description on right) */
+.formula-section {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--spacing-lg);
+    align-items: center;
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.formula-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+.image-box img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.image-caption {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.formula-description h2 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.formula-description p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Add Ons Grid */
+.addon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.addon-card {
+    text-align: center;
+    background-color: #ffffff;
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.addon-card h3 {
+    font-size: 1.25rem;
+    color: var(--text-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.addon-card p {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Creative Composites Section */
+.creative-composites {
+    max-width: 600px;
+    margin: var(--spacing-sm) auto;
+    text-align: center;
+}
+
+.creative-composites p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-sm);
+}
+
+.creative-composites-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+
+/* Services Grid Section */
+.services-section {
+    display: grid;
+    /* Auto-fit creates responsive columns without media queries.
+     It ensures cards are at least 300px wide, expanding to fill space. */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    text-align: center;
+}
+
+.service-card h3 {
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.25rem;
+}
+
+.service-card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    /* Keeps all service images uniform */
+    object-fit: cover;
+    /* Prevents image distortion */
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.service-card img:hover {
+    transform: scale(1.02);
+    /* Slight zoom effect on interaction */
+}
+
+/* About / Value Proposition Section */
+.about-section {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    /* Centers the block itself */
+}
+
+.about-section h2 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.about-section p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+.camera-illustrations {
+    margin-top: var(--spacing-lg);
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+.spacer {
+    height: var(--spacer-height, 1.5rem);
+}
+
+.spacer.xs {
+    --spacer-height: 0.5rem;
+}
+
+.spacer.sm {
+    --spacer-height: 1rem;
+}
+
+.spacer.md {
+    --spacer-height: 2rem;
+}
+
+.spacer.lg {
+    --spacer-height: 4rem;
+}
+
+.spacer.xl {
+    --spacer-height: 6rem;
+}
+
+/* Submission Page Layout */
+.submission-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    align-items: center;
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.submission-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.submission-img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--accent-color);
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #003d82;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.text-col p {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    max-width: 1000px;
+    margin: var(--spacing-md) auto;
+}
+
+/* Contact Page Layout */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.contact-map iframe {
+    width: 70%;
+    height: 700px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    filter: grayscale(75%);
+    margin: 0 auto;
+}
+
+.contact-content h2 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* FAQ Section Layout */
+.faq-container {
+    max-width: 1000px;
+    margin: var(--spacing-xl) auto;
+    padding: 0 var(--spacing-md);
+}
+
+.faq-page-title {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+    font-size: 2.2rem;
+}
+
+.faq-row {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    gap: var(--spacing-lg);
+    align-items: start;
+    padding: var(--spacing-md) 0;
+}
+
+.faq-row h2,
+.faq-question h2 {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.faq-answer p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-color);
+}
+
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   5. Footer
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: var(--spacing-lg) var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    background-color: #f9f9f9;
+    border-top: 1px solid var(--border-color);
+}
+
+/* ==========================================================================
+   6. Mobile Responsiveness (Media Queries)
+   Adjusts layout for smaller screens like tablets and phones.
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* Stack header elements vertically */
+    header {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    /* Wrap navigation items to prevent overflow */
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Stack welcome section vertically */
+    .welcome-section {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-section .video-container {
+        grid-row: auto;
+    }
+
+    /* Stack overview section vertically */
+    .overview-section {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+
+    /* Stack formula section vertically */
+    .formula-section {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .formula-description {
+        text-align: center;
+    }
+
+    /* Stack add-on grid vertically on mobile */
+    .addon-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    /* Stack creative composites grid vertically on mobile */
+    .creative-composites-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stack submission grid vertically on mobile */
+    .submission-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+
+    .text-col p {
+        text-align: center;
+    }
+
+    /* Stack video grid vertically on mobile */
+    .video-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    /* Stack contact grid vertically on mobile */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+        text-align: center;
+    }
+
+    /* Stack FAQ grid vertically on mobile */
+    .faq-row {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    /* Ensure dropdown menus align better on mobile */
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        padding-left: var(--spacing-sm);
+        display: none;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: flex;
+    }
+}
